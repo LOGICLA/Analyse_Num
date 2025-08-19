@@ -4,12 +4,7 @@
 
 using namespace std;
 
-int Factorielle(int n){
-    if (n<0) return 0;
-    if (n==0 || n==1) return 1;
-    return n*Factorielle(n-1);
-};
-
+// #Generate Permutations using Heap's Algorithm
 vector<vector<int>> Permutations;
 
 void swap(int& a,int& b){
@@ -27,15 +22,25 @@ void Heap(int k, vector<int>& A){
     };
 };
 
+// Caclulte Permutation's signature 
+int signaturePermutation(const vector<int>& perm) {
+    int n = perm.size();
+    int inversions = 0;
+    
+    // Number of inversions
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (perm[i] > perm[j]) {
+                inversions++;
+            }
+        }
+    }
+    
+    return (inversions % 2 == 0) ? 1 : -1;
+}
+
+
 int main()
  {  
-    int n=3;
-    vector<int> A={1,2,3};
-    Heap(3,A);
-    for( vector<int> perm:Permutations){
-        for(int p:perm){
-            cout<<p<<" ";
-        };
-        cout<<endl;
-    }
+  
  }
