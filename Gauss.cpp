@@ -22,7 +22,7 @@ void Heap(int k, vector<int>& A){
     };
 };
 
-// Caclulte Permutation's signature 
+// #Caclulte Permutation's signature 
 int signaturePermutation(const vector<int>& perm) {
     int n = perm.size();
     int inversions = 0;
@@ -37,10 +37,31 @@ int signaturePermutation(const vector<int>& perm) {
     }
     
     return (inversions % 2 == 0) ? 1 : -1;
-}
+};
+
+// #Derterminant
+double determinant(vector<vector<double>> matrice){
+    double det =0;
+    double prod;
+    int n = matrice.size();
+    vector<int> sigma1(n);
+    for(int i=1 ; i<n+1 ; i++){
+        sigma1[i]=i;
+    }
+    Heap(n,sigma1);
+    for(int i=0; i<Permutations.size() ; i++){
+        prod=1;
+        for(int j=0; j<n ; j++){
+           prod*=matrice[Permutations[i][j]][j];     
+        };
+        det+=signaturePermutation(Permutations[i])*prod;
+    };
+    return det;
+};
 
 
 int main()
  {  
-  
+   vector<vector<double>> A = {{1,5},{4,7}};
+   cout <<determinant(A);
  }
